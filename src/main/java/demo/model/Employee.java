@@ -7,6 +7,7 @@ import java.util.*;
  * Created by poo2 on 16/06/2015.
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
