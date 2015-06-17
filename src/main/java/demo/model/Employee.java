@@ -4,11 +4,13 @@ import javax.persistence.*;
 import java.util.*;
 
 /**
- * Created by poo2 on 16/06/2015.
+ * CREADO POR MARIO ROMERO FERNANDEZ
  */
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,6 +18,7 @@ public class Employee {
     private String name;
     private String surname;
     private Double salary;
+
     @Temporal(TemporalType.DATE)
     private Date dateIncorporation;
 
@@ -104,4 +107,5 @@ public class Employee {
         result = 31 * result + dateIncorporation.hashCode();
         return result;
     }
+
 }

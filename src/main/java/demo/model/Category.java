@@ -1,8 +1,9 @@
 package demo.model;
 
 /**
- * Created by poo2 on 17/06/2015.
+ * CREADO POR MARIO ROMERO FERNANDEZ
  */
+
 public enum Category {
     JUNIOR, SENIOR, ARCHITECT
 }

@@ -12,7 +12,7 @@ import java.util.*;
 public interface DeveloperRepository  extends PagingAndSortingRepository<Developer, Long> {
     List<Developer> findByNameAndSurname(@Param("name") String name,
                                          @Param("surname") String surname);
-    List<Developer> findByDateIncorporationBetween(@Param("start")Date start,
-                                                   @Param("end") Date end);
+
     List<Developer> findByCategory(@Param("category") Category category);
+
 }

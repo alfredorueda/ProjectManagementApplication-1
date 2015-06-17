@@ -3,11 +3,12 @@ package demo.model;
 import javax.persistence.*;
 
 /**
- * Created by poo2 on 17/06/2015.
+ * CREADO POR MARIO ROMERO FERNANDEZ
  */
+
 @Entity
 @PrimaryKeyJoinColumn(name="id")
-public class Developer extends Employee{
+public class Developer extends Employee {
 
     @Enumerated(EnumType.STRING)
     private Category category;
@@ -32,4 +33,5 @@ public class Developer extends Employee{
                 "category=" + category +
                 '}';
     }
+
 }
