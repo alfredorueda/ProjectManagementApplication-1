@@ -78,12 +78,6 @@ public class EmployeeService {
             System.out.println(eaux);
         }
 
-        System.out.println("### CONSULTA por NAME and SURNAME ###");
-
-        for(Developer eaux : employeeRepository.findByNameAndSurname("Sara","Lorente")){
-            System.out.println(eaux);
-        }
-
         System.out.println("### CONSULTA por DATEINCORPORATION ###");
 
         for (Employee eaux : employeeRepository.findByDateIncorporationBetween(startDate, endDate)){
