@@ -28,6 +28,9 @@ public class Project {
     @ManyToOne
     private Manager manager;
 
+    @ManyToMany
+    private Developer developer;
+
     public Project() {
     }
 
@@ -63,13 +66,8 @@ public class Project {
         this.endDate = endDate;
     }
 
-    public Manager getManager() {
-        return manager;
-    }
 
-    public void setManager(Manager manager) {
-        this.manager = manager;
-    }
+
 
     @Override
     public String toString() {

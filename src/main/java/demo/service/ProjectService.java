@@ -15,24 +15,15 @@ public class ProjectService {
 
     @Autowired
     ManagerRepository managerRepository;
+    @Autowired
     ProjectRepository projectRepository;
 
     public void testProject() {
 
-        Manager manager1 = new Manager();
-        manager1.setName("Son Goku");
-        manager1.setSurname("SSJJ4");
-        manager1.setSalary(1234.0);
-        manager1.setBonusSucces(100.0);
-        manager1.setDateIncorporation(new Date());
-
-        managerRepository.save(manager1);
-
         Calendar calendar = Calendar.getInstance();
         calendar.set(2015, Calendar.JANUARY, 1);
-        calendar.set(2015, Calendar.SEPTEMBER, 1);
-
         Date startDate = calendar.getTime();
+        calendar.set(2015, Calendar.SEPTEMBER, 1);
         Date endDate = calendar.getTime();
 
         Project project = new Project();
@@ -41,12 +32,9 @@ public class ProjectService {
         project.setStartDate(startDate);
         project.setEndDate(endDate);
 
-        project.setManager(manager1);
+        Manager manager = managerRepository.findByNameAndSurname("Trunks","SSJJ").get(0);
 
         projectRepository.save(project);
-
-        System.out.println("### CONSULTA por MANAGER/PROJECTS ###");
-
 
     }
 }

@@ -1,6 +1,8 @@
 package demo.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * CREADO POR MARIO ROMERO FERNANDEZ
@@ -13,6 +15,9 @@ public class Developer extends Employee {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @ManyToMany(mappedBy = "developer")
+    private Set<Project> projects = new HashSet<>();
+
     public Developer() {
     }
 
@@ -22,6 +27,14 @@ public class Developer extends Employee {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     @Override

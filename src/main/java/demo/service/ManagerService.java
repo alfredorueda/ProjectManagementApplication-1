@@ -45,15 +45,5 @@ public class ManagerService {
         manager3.setBonusSucces(200.0);
 
         managerRepository.save(manager3);
-
-        System.out.println("### CONSULTA por NAME and SURNAME ###");
-
-        for (Manager maux : managerRepository.findByNameAndSurname("Trunks","SSJJ")){
-            System.out.println(maux);
-        }
-
-
-        System.out.println("### CONSULTA por PROJECTS/MANAGER ###");
-
     }
 }

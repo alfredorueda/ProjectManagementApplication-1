@@ -13,6 +13,6 @@ import java.util.List;
 
 public interface ProjectRepository  extends PagingAndSortingRepository<Project, Long>{
 
-    List<Project> findByManagerProjects(@Param("manager")Manager manager);
-
+    List<Manager> findByNameAndSurname(@Param("name") String name,
+                                       @Param("surname") String surname);
 }
