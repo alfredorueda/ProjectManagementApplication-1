@@ -12,7 +12,9 @@ import java.util.*;
 
 public interface ManagerRepository extends PagingAndSortingRepository<Manager, Long> {
 
-    List<Manager> findByNameAndSurname(@Param("name") String name,
-                                       @Param("surname") String surname);
+    List<Manager> findByNameAndSurname(@Param("name")String name,
+                                        @Param("surname")String surname);
+
+    List<Manager> findBySurname(@Param("surname") String surname);
 
 }

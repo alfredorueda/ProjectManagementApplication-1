@@ -1,7 +1,6 @@
 package demo.repository;
 
 import demo.model.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import java.util.*;
@@ -11,6 +10,10 @@ import java.util.*;
  */
 
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long> {
+
+    List<Employee> findByNameAndSurname(@Param("name")String name,
+                                        @Param("surname")String surname);
+
     List<Employee> findBySurname(@Param("surname") String surname);
 
     List<Employee> findByDateIncorporationBetween(@Param("start") Date start,

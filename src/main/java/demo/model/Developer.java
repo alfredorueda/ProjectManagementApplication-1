@@ -1,8 +1,7 @@
 package demo.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * CREADO POR MARIO ROMERO FERNANDEZ
@@ -12,11 +11,21 @@ import java.util.Set;
 @PrimaryKeyJoinColumn(name="id")
 public class Developer extends Employee {
 
+    @Column
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @ManyToMany(mappedBy = "developer")
+    @Column
+    @ManyToMany//(mappedBy = "developers")
     private Set<Project> projects = new HashSet<>();
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
 
     public Developer() {
     }
@@ -29,14 +38,6 @@ public class Developer extends Employee {
         this.category = category;
     }
 
-    public Set<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
-    }
-
     @Override
     public String toString() {
 
@@ -46,5 +47,4 @@ public class Developer extends Employee {
                 "category=" + category +
                 '}';
     }
-
 }

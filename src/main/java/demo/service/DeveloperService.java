@@ -58,15 +58,33 @@ public class DeveloperService {
 
         developerRepository.save(developer4);
 
-        System.out.println("### CONSULTA por NAME and SURNAME ###");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
 
-        for(Developer daux : developerRepository.findByNameAndSurname("Son","Goku")){
+        for(Developer daux : developerRepository.findByNameAndSurname("Mario", "Romero")){
             System.out.println(daux);
         }
 
-        System.out.println("### CONSULTA por CATEGORY ###");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
 
-        for(Developer daux : developerRepository.findByCategory(Category.JUNIOR)){
+        for(Developer daux : developerRepository.findByCategory(Category.SENIOR)){
+            System.out.println(daux);
+        }
+
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+
+        for(Developer daux : developerRepository.findBySurname("Goku")){
             System.out.println(daux);
         }
     }

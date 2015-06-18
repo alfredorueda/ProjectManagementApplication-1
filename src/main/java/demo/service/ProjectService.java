@@ -14,9 +14,11 @@ import java.util.*;
 public class ProjectService {
 
     @Autowired
-    ManagerRepository managerRepository;
+    private ManagerRepository managerRepository;
     @Autowired
-    ProjectRepository projectRepository;
+    private ProjectRepository projectRepository;
+    @Autowired
+    private DeveloperRepository developerRepository;
 
     public void testProject() {
 
@@ -33,6 +35,14 @@ public class ProjectService {
         project.setEndDate(endDate);
 
         Manager manager = managerRepository.findByNameAndSurname("Trunks","SSJJ").get(0);
+
+        project.setManager(manager);
+
+        projectRepository.save(project);
+
+        Developer d = developerRepository.findBySurname("Bah Boom").get(0);
+
+        project.getDevelopers().add(d);
 
         projectRepository.save(project);
 

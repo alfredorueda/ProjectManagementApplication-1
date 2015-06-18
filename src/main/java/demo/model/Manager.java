@@ -10,22 +10,21 @@ import java.util.*;
 @Entity
 @PrimaryKeyJoinColumn(name="id")
 public class Manager extends Employee {
-
     @Column
-    private Double bonusSucces;
+    private double bonusSuccess;
 
-    @OneToMany(mappedBy = "manager")
+    @OneToMany(mappedBy="manager")
     private Set<Project> projects = new HashSet<>();
 
     public Manager() {
     }
 
-    public Double getBonusSucces() {
-        return bonusSucces;
+    public double getBonusSuccess() {
+        return bonusSuccess;
     }
 
-    public void setBonusSucces(Double bonusSucces) {
-        this.bonusSucces = bonusSucces;
+    public void setBonusSuccess(double bonusSuccess) {
+        this.bonusSuccess = bonusSuccess;
     }
 
     public Set<Project> getProjects() {
@@ -39,7 +38,7 @@ public class Manager extends Employee {
     @Override
     public String toString() {
         return super.toString() + "Manager{" +
-                "bonusSucces=" + bonusSucces +
+                "bonusSuccess=" + bonusSuccess +
                 ", projects=" + projects +
                 '}';
     }

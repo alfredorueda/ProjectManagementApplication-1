@@ -3,6 +3,8 @@ package demo.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * CREADO POR MARIO ROMERO FERNANDEZ
@@ -12,7 +14,6 @@ import java.util.Date;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
     private Long id;
 
     @Column
@@ -28,8 +29,16 @@ public class Project {
     @ManyToOne
     private Manager manager;
 
-    @ManyToMany
-    private Developer developer;
+    @ManyToMany(mappedBy = "projects")
+    private Set<Developer> developers = new HashSet<>();
+
+    public Set<Developer> getDevelopers() {
+        return developers;
+    }
+
+    public void setDevelopers(Set<Developer> developers) {
+        this.developers = developers;
+    }
 
     public Project() {
     }
@@ -66,8 +75,13 @@ public class Project {
         this.endDate = endDate;
     }
 
+    public Manager getManager() {
+        return manager;
+    }
 
-
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
 
     @Override
     public String toString() {
@@ -79,5 +93,4 @@ public class Project {
                 ", manager=" + manager +
                 '}';
     }
-
 }
