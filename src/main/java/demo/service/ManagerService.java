@@ -1,6 +1,7 @@
 package demo.service;
 
 import demo.model.*;
+import demo.model.Manager;
 import demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,24 +47,7 @@ public class ManagerService {
 
         managerRepository.save(manager3);
 
-        System.out.println("####################################################");
-        System.out.println("####################################################");
-        System.out.println("####################################################");
-        System.out.println("####################################################");
-        System.out.println("####################################################");
 
-        for(Manager maux : managerRepository.findByNameAndSurname("Trunks", "SSJJ")){
-            System.out.println(maux);
-        }
 
-        System.out.println("####################################################");
-        System.out.println("####################################################");
-        System.out.println("####################################################");
-        System.out.println("####################################################");
-        System.out.println("####################################################");
-
-        for(Manager maux : managerRepository.findBySurname("SSJJ")){
-            System.out.println(maux);
-        }
     }
 }

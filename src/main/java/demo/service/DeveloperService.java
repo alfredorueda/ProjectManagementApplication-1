@@ -74,9 +74,9 @@ public class DeveloperService {
         System.out.println("####################################################");
         System.out.println("####################################################");
 
-        for(Developer daux : developerRepository.findByCategory(Category.SENIOR)){
+        /*for(Developer daux : developerRepository.findByCategory(Category.SENIOR)){
             System.out.println(daux);
-        }
+        }*/
 
         System.out.println("####################################################");
         System.out.println("####################################################");

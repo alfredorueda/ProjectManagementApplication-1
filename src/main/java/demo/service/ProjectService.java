@@ -34,11 +34,9 @@ public class ProjectService {
         project.setStartDate(startDate);
         project.setEndDate(endDate);
 
-        Manager manager = managerRepository.findByNameAndSurname("Trunks","SSJJ").get(0);
+        Manager manager = managerRepository.findBySurname("SSJJ").get(0);
 
         project.setManager(manager);
-
-        projectRepository.save(project);
 
         Developer d = developerRepository.findBySurname("Bah Boom").get(0);
 

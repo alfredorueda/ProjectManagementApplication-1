@@ -1,9 +1,12 @@
 package demo;
 
-import demo.service.DeveloperService;
-import demo.service.EmployeeService;
-import demo.service.ManagerService;
-import demo.service.ProjectService;
+import demo.model.Manager;
+import demo.repository.DeveloperRepository;
+import demo.repository.EmployeeRepository;
+import demo.repository.ManagerRepository;
+import demo.repository.ProjectRepository;
+import demo.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -26,6 +29,7 @@ public class ProjectManagementApplication {
 
         ProjectService projectService = context.getBean(ProjectService.class);
         projectService.testProject();
+
 
     }
 }

@@ -16,15 +16,15 @@ public class Developer extends Employee {
     private Category category;
 
     @Column
-    @ManyToMany//(mappedBy = "developers")
+    @ManyToMany(mappedBy="developers")
     private Set<Project> projects = new HashSet<>();
 
-    public Set<Project> getProjects() {
+    public Set<Project> getProject() {
         return projects;
     }
 
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
+    public void setProject(Set<Project> project) {
+        this.projects = project;
     }
 
     public Developer() {
@@ -40,10 +40,7 @@ public class Developer extends Employee {
 
     @Override
     public String toString() {
-
-        String developer = super.toString();
-
-        return developer + "Developer{" +
+        return super.toString() + "Developer{" +
                 "category=" + category +
                 '}';
     }

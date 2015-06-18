@@ -29,15 +29,15 @@ public class Project {
     @ManyToOne
     private Manager manager;
 
-    @ManyToMany(mappedBy = "projects")
+    @ManyToMany
     private Set<Developer> developers = new HashSet<>();
 
     public Set<Developer> getDevelopers() {
         return developers;
     }
 
-    public void setDevelopers(Set<Developer> developers) {
-        this.developers = developers;
+    public void setDevelopers(Set<Developer> developer) {
+        this.developers = developer;
     }
 
     public Project() {
@@ -90,7 +90,6 @@ public class Project {
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", manager=" + manager +
                 '}';
     }
 }

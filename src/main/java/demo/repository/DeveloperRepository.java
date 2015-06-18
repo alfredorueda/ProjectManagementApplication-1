@@ -16,5 +16,5 @@ public interface DeveloperRepository  extends PagingAndSortingRepository<Develop
     List<Developer> findByNameAndSurname(@Param("name") String name,
                                           @Param("surname") String surname);
 
-    List<Developer> findByCategory(@Param("category")Category category);
+    //List<Developer> findByCategory(@Param("category")Category category);
 }
