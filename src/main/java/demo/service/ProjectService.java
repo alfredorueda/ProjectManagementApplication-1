@@ -45,5 +45,8 @@ public class ProjectService {
 
         projectRepository.save(project);
 
+        System.out.println("### CONSULTA por MANAGER/PROJECTS ###");
+
+
     }
 }

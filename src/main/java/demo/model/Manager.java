@@ -28,11 +28,19 @@ public class Manager extends Employee {
         this.bonusSucces = bonusSucces;
     }
 
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
+
     @Override
     public String toString() {
         return super.toString() + "Manager{" +
                 "bonusSucces=" + bonusSucces +
+                ", projects=" + projects +
                 '}';
     }
-
 }
