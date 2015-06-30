@@ -1,5 +1,7 @@
 package demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -14,8 +16,9 @@ public class Manager extends Employee {
     @Column
     private Double bonusSucces;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "manager")
-    private Set<Project> projects = new HashSet<>();
+    private Set<Project> projectSet = new HashSet<>();
 
     public Manager() {
     }
@@ -29,18 +32,17 @@ public class Manager extends Employee {
     }
 
     public Set<Project> getProjects() {
-        return projects;
+        return projectSet;
     }
 
     public void setProjects(Set<Project> projects) {
-        this.projects = projects;
+        this.projectSet = projects;
     }
 
     @Override
     public String toString() {
         return super.toString() + "Manager{" +
                 "bonusSucces=" + bonusSucces +
-                ", projects=" + projects +
                 '}';
     }
 }

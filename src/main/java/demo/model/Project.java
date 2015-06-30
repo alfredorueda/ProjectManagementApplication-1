@@ -1,8 +1,12 @@
 package demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * CREADO POR MARIO ROMERO FERNANDEZ
@@ -25,11 +29,17 @@ public class Project {
     @Column
     private Date endDate;
 
+    @JsonIgnore
     @ManyToOne
     private Manager manager;
 
+    @JsonIgnore
     @ManyToMany
-    private Developer developer;
+    private Set<Developer> developerSet = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "projectSet")
+    private Set<Speciality> specialities = new HashSet<>();
 
     public Project() {
     }
@@ -66,8 +76,29 @@ public class Project {
         this.endDate = endDate;
     }
 
+    public Manager getManager() {
+        return manager;
+    }
 
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
 
+    public Set<Developer> getDevelopers() {
+        return developerSet;
+    }
+
+    public void setDevelopers(Set<Developer> developers) {
+        this.developerSet = developers;
+    }
+
+    public Set<Speciality> getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(Set<Speciality> specialities) {
+        this.specialities = specialities;
+    }
 
     @Override
     public String toString() {
@@ -76,8 +107,6 @@ public class Project {
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", manager=" + manager +
                 '}';
     }
-
 }

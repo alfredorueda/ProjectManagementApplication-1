@@ -5,6 +5,9 @@ import demo.model.*;
 import demo.repository.DeveloperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+
 import java.util.*;
 
 /**
@@ -20,6 +23,7 @@ public class DeveloperService {
     @Autowired
     DeveloperRepository developerRepository;
 
+    @Transactional
     public void testDevelopers(){
 
         Developer developer1 = new Developer();
@@ -58,9 +62,9 @@ public class DeveloperService {
 
         developerRepository.save(developer4);
 
-        System.out.println("### CONSULTA por NAME and SURNAME ###");
+        System.out.println("### CONSULTA por SURNAME ###");
 
-        for(Developer daux : developerRepository.findByNameAndSurname("Son","Goku")){
+        for(Developer daux : developerRepository.findBySurname("Goku")){
             System.out.println(daux);
         }
 

@@ -14,7 +14,7 @@ import java.util.*;
 public class ProjectService {
 
     @Autowired
-    ManagerRepository managerRepository;
+    EmployeeRepository employeeRepository;
     @Autowired
     ProjectRepository projectRepository;
 
@@ -25,14 +25,17 @@ public class ProjectService {
         Date startDate = calendar.getTime();
         calendar.set(2015, Calendar.SEPTEMBER, 1);
         Date endDate = calendar.getTime();
-
         Project project = new Project();
-
         project.setDescription("PROYECTO DE JAVA");
         project.setStartDate(startDate);
         project.setEndDate(endDate);
+        Manager manager = (Manager)employeeRepository.findBySurname("SSJJ").get(0);
+        project.setManager(manager);
 
-        Manager manager = managerRepository.findByNameAndSurname("Trunks","SSJJ").get(0);
+        projectRepository.save(project);
+
+        Developer developer = (Developer)employeeRepository.findBySurname("Romero").get(0);
+        project.getDevelopers().add(developer);
 
         projectRepository.save(project);
 

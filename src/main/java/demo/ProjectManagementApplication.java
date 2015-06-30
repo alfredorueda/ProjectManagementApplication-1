@@ -18,11 +18,13 @@ public class ProjectManagementApplication {
         DeveloperService developerService = context.getBean(DeveloperService.class);
         ManagerService managerService = context.getBean(ManagerService.class);
         ProjectService projectService = context.getBean(ProjectService.class);
+        SpecialityServices specialityService = context.getBean(SpecialityServices.class);
 
         employeeService.testEmployees();
         developerService.testDevelopers();
         managerService.testManager();
         projectService.testProject();
+        specialityService.testSpecialities();
 
     }
 }
