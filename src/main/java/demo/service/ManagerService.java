@@ -24,7 +24,7 @@ public class ManagerService {
         manager1.setSurname("SSJJ");
         manager1.setSalary(1000.0);
         manager1.setDateIncorporation(new Date());
-        manager1.setBonusSuccess(20.0);
+        manager1.setBonusSucces(20.0);
 
         managerRepository.save(manager1);
 
@@ -34,7 +34,7 @@ public class ManagerService {
         manager2.setSurname("SSJJ");
         manager2.setSalary(1500.0);
         manager2.setDateIncorporation(new Date());
-        manager2.setBonusSuccess(50.0);
+        manager2.setBonusSucces(50.0);
 
         managerRepository.save(manager2);
 
@@ -43,7 +43,7 @@ public class ManagerService {
         manager3.setSurname("SSJJ2");
         manager3.setSalary(10000.0);
         manager3.setDateIncorporation(new Date());
-        manager3.setBonusSuccess(200.0);
+        manager3.setBonusSucces(200.0);
 
         managerRepository.save(manager3);
 
