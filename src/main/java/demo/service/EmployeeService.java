@@ -30,58 +30,78 @@ public class EmployeeService {
         calendar.set(2015, Calendar.FEBRUARY, 1);
         Date incorporationDate = calendar.getTime();
 
-        Employee employee000 = new Employee();
-        employee000.setName("Mario");
-        employee000.setSurname("Romero");
-        employee000.setSalary(12300.0);
-        employee000.setDateIncorporation(incorporationDate);
-        employeeRepository.save(employee000);
-
-        Employee employee0 = new Employee();
-        employee0.setName("Cristian");
-        employee0.setSurname("Fernandez");
-        employee0.setSalary(12300.0);
-        employee0.setDateIncorporation(incorporationDate);
-        employeeRepository.save(employee0);
-
-        Employee employee00 = new Employee();
-        employee00.setName("Sara");
-        employee00.setSurname("Lorente");
-        employee00.setSalary(12300.0);
-        employee00.setDateIncorporation(incorporationDate);
-        employeeRepository.save(employee00);
+        /* EMPLEADOS CON FECHA DE INCORPORACION, NO NEW DATE() */
 
         Employee employee = new Employee();
-        employee.setName("Carlos");
-        employee.setSurname("Mendez");
+        employee.setName("Cristian");
+        employee.setSurname("Fernandez");
         employee.setSalary(12300.0);
-        employee.setDateIncorporation(new Date());
+        employee.setDateIncorporation(incorporationDate);
+
         employeeRepository.save(employee);
 
+        Employee employee0 = new Employee();
+        employee0.setName("Sara");
+        employee0.setSurname("Lorente");
+        employee0.setSalary(12300.0);
+        employee0.setDateIncorporation(incorporationDate);
+
+        employeeRepository.save(employee0);
+
+        /* EMPLEADOS CON FECHA DE INCORPORACION, NEW DATE() */
+
+        Employee employee1 = new Employee();
+        employee1.setName("Mario");
+        employee1.setSurname("Romero");
+        employee1.setSalary(12300.0);
+        employee1.setDateIncorporation(new Date());
+
+        employeeRepository.save(employee1);
+
         Employee employee2 = new Employee();
-        employee2.setName("Mario");
-        employee2.setSurname("Mendez");
+        employee2.setName("Omar");
+        employee2.setSurname("Romero");
         employee2.setSalary(12300.0);
         employee2.setDateIncorporation(new Date());
+
         employeeRepository.save(employee2);
 
-        Employee employee3 = new Employee();
-        employee3.setName("Alejandro");
-        employee3.setSurname("Mendez");
-        employee3.setSalary(12300.0);
-        employee3.setDateIncorporation(new Date());
-        employeeRepository.save(employee3);
+        /* FIND BY NAME AND SURNAME */
 
-        System.out.println("### CONSULTA por NAME ###");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
 
-        for (Employee eaux : employeeRepository.findBySurname("Mendez")){
+        for(Employee eaux : employeeRepository.findByNameAndSurname("Mario", "Romero")){
             System.out.println(eaux);
         }
 
-        System.out.println("### CONSULTA por DATEINCORPORATION ###");
+        /* FIND BY SURNAME */
 
-        for (Employee eaux : employeeRepository.findByDateIncorporationBetween(startDate, endDate)){
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+
+        for(Employee eaux : employeeRepository.findBySurname("Romero")){
             System.out.println(eaux);
         }
+
+        /* FIND BY DATE INCORPORATION */
+
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+        System.out.println("####################################################");
+
+        for(Employee eaux : employeeRepository.findByDateIncorporationBetween(startDate,endDate)){
+            System.out.println(eaux);
+        }
+
+
     }
 }
