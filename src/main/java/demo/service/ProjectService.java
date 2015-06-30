@@ -14,7 +14,9 @@ import java.util.*;
 public class ProjectService {
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    ManagerRepository managerRepository;
+    @Autowired
+    DeveloperRepository developerRepository;
     @Autowired
     ProjectRepository projectRepository;
 
@@ -29,13 +31,13 @@ public class ProjectService {
         project.setDescription("PROYECTO DE JAVA");
         project.setStartDate(startDate);
         project.setEndDate(endDate);
-        Manager manager = (Manager)employeeRepository.findBySurname("SSJJ").get(0);
+        Manager manager = managerRepository.findBySurname("SSJJ").get(0);
         project.setManager(manager);
 
         projectRepository.save(project);
 
-        Developer developer = (Developer)employeeRepository.findBySurname("Romero").get(0);
-        project.getDevelopers().add(developer);
+        Developer developer = (Developer)developerRepository.findBySurname("Romero").get(0);
+        project.getDeveloperSet().add(developer);
 
         projectRepository.save(project);
 

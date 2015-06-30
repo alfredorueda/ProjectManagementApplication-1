@@ -21,7 +21,7 @@ public class Speciality {
 
     @Column
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(mappedBy = "specialitiesSet")
     private Set<Developer> developerSet = new HashSet<>();
 
     @Column
@@ -67,8 +67,8 @@ public class Speciality {
     @Override
     public String toString() {
         return "Speciality{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
+                ", id=" + id +
                 '}';
     }
 }

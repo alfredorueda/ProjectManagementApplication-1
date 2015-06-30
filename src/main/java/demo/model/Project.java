@@ -29,7 +29,6 @@ public class Project {
     @Column
     private Date endDate;
 
-    @JsonIgnore
     @ManyToOne
     private Manager manager;
 
@@ -84,12 +83,12 @@ public class Project {
         this.manager = manager;
     }
 
-    public Set<Developer> getDevelopers() {
+    public Set<Developer> getDeveloperSet() {
         return developerSet;
     }
 
-    public void setDevelopers(Set<Developer> developers) {
-        this.developerSet = developers;
+    public void setDeveloperSet(Set<Developer> developerSet) {
+        this.developerSet = developerSet;
     }
 
     public Set<Speciality> getSpecialities() {
@@ -107,6 +106,7 @@ public class Project {
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
+                ", manager=" + manager +
                 '}';
     }
 }

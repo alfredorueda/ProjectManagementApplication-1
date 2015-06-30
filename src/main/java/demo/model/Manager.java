@@ -13,7 +13,6 @@ import java.util.*;
 @PrimaryKeyJoinColumn(name="id")
 public class Manager extends Employee {
 
-    @Column
     private Double bonusSucces;
 
     @JsonIgnore

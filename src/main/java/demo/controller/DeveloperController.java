@@ -1,5 +1,6 @@
 package demo.controller;
 
+import demo.exception.DeveloperException;
 import demo.model.Developer;
 import demo.repository.DeveloperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,23 @@ public class DeveloperController {
         }
 
         return developers;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteById(@PathVariable Long id) {
+        Developer developer = developerRepository.findOne(id);
+
+        if(developer == null){throw new DeveloperException(id);}
+
+        developerRepository.delete(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Developer updateById(@PathVariable Long id, @RequestBody Developer developer) {
+        Developer d1 = developerRepository.findOne(id);
+
+        if(d1 == null){throw new DeveloperException(id);}
+
+        return developerRepository.save(developer);
     }
 }

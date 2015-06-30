@@ -14,16 +14,16 @@ import java.util.Set;
 @PrimaryKeyJoinColumn(name="id")
 public class Developer extends Employee {
 
+    @Column
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @Column
     @JsonIgnore
     @ManyToMany(mappedBy="developerSet")
     private Set<Project> projectSet = new HashSet<>();
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "developerSet")
+    @ManyToMany
     private Set<Speciality> specialitiesSet = new HashSet<>();
 
     public Developer() {
@@ -37,12 +37,12 @@ public class Developer extends Employee {
         this.category = category;
     }
 
-    public Set<Project> getProjects() {
+    public Set<Project> getProjectSet() {
         return projectSet;
     }
 
-    public void setProjects(Set<Project> projects) {
-        this.projectSet = projects;
+    public void setProjectSet(Set<Project> projectSet) {
+        this.projectSet = projectSet;
     }
 
     public Set<Speciality> getSpecialitiesSet() {
@@ -55,8 +55,9 @@ public class Developer extends Employee {
 
     @Override
     public String toString() {
-        return super.toString()+"Developer{" +
+        return "Developer{" +
                 "category=" + category +
+                "projects" + projectSet +
                 '}';
     }
 }
