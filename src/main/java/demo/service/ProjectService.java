@@ -40,6 +40,7 @@ public class ProjectService {
         project.getDeveloperSet().add(developer);
 
         projectRepository.save(project);
-
     }
+
+
 }

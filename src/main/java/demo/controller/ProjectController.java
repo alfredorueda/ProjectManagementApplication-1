@@ -1,7 +1,9 @@
 package demo.controller;
 
     import demo.exception.ProjectException;
+    import demo.model.Manager;
     import demo.model.Project;
+    import demo.repository.ManagerRepository;
     import demo.repository.ProjectRepository;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
@@ -20,20 +22,12 @@ package demo.controller;
 @RequestMapping("/projects")
 public class ProjectController {
 
-
     @Autowired
     private ProjectRepository projectRepository;
 
     @RequestMapping(method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Project save(@RequestBody Project project) {return projectRepository.save(project);}
-
-    @RequestMapping(value = "/{idProject}/manager/{idManager}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public Project addManager(@PathVariable Long idProject, @RequestBody Project project) {
-        if (projectRepository.findOne(idProject) == null) throw new ProjectException(idProject);
-        return projectRepository.save(project);
-    }
 
     @RequestMapping(method= RequestMethod.GET)
     public List<Project> findAll() {
@@ -70,5 +64,22 @@ public class ProjectController {
 
         project = projectRepository.save(project);
         return project;
+    }
+
+    @RequestMapping(value = "/{idProject}/manager/{idManager}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Project addManager(@PathVariable Long idProject, @RequestBody Project project) {
+        if (projectRepository.findOne(idProject) == null) throw new ProjectException(idProject);
+        return projectRepository.save(project);
+    }
+
+    @RequestMapping(value = "/{idProject}/manager", method = RequestMethod.GET)
+    public Manager getByManager(@PathVariable Long idProject) {
+        Project project = projectRepository.findOne(idProject);
+
+        if (project == null) throw new ProjectException(idProject);
+
+        return project.getManager();
+
     }
 }
