@@ -37,7 +37,7 @@ public class Project {
     private Set<Developer> developerSet = new HashSet<>();
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "projectSet")
+    @ManyToMany
     private Set<Speciality> specialities = new HashSet<>();
 
     public Project() {
@@ -106,7 +106,6 @@ public class Project {
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", manager=" + manager +
                 '}';
     }
 }

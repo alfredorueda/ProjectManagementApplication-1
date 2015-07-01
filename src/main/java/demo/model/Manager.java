@@ -17,7 +17,7 @@ public class Manager extends Employee {
 
     @JsonIgnore
     @OneToMany(mappedBy = "manager")
-    private Set<Project> projectSet = new HashSet<>();
+    private Set<Project> projects = new HashSet<>();
 
     public Manager() {
     }
@@ -31,11 +31,11 @@ public class Manager extends Employee {
     }
 
     public Set<Project> getProjects() {
-        return projectSet;
+        return projects;
     }
 
     public void setProjects(Set<Project> projects) {
-        this.projectSet = projects;
+        this.projects = projects;
     }
 
     @Override

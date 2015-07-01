@@ -19,15 +19,13 @@ public class Speciality {
     @Column
     private String name;
 
-    @Column
     @JsonIgnore
     @ManyToMany(mappedBy = "specialitiesSet")
     private Set<Developer> developerSet = new HashSet<>();
 
-    @Column
     @JsonIgnore
-    @ManyToMany
-    private Set<Project> projectSet = new HashSet<>();
+    @ManyToMany(mappedBy = "specialities")
+    private Set<Project> projects = new HashSet<>();
 
     public Speciality() {
     }
@@ -56,12 +54,12 @@ public class Speciality {
         this.developerSet = developerSet;
     }
 
-    public Set<Project> getProjectSet() {
-        return projectSet;
+    public Set<Project> getProjects() {
+        return projects;
     }
 
-    public void setProjectSet(Set<Project> projectSet) {
-        this.projectSet = projectSet;
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     @Override

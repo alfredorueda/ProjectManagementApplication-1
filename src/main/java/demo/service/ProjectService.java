@@ -36,7 +36,7 @@ public class ProjectService {
 
         projectRepository.save(project);
 
-        Developer developer = (Developer)developerRepository.findBySurname("Romero").get(0);
+        Developer developer = developerRepository.findBySurname("Romero").get(0);
         project.getDeveloperSet().add(developer);
 
         projectRepository.save(project);
