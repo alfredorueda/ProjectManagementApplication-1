@@ -27,7 +27,7 @@ public class Developer extends Employee {
     private Set<Speciality> specialitiesSet = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "projects")
+    @OneToMany(mappedBy = "developers")
     private Set<Review> reviews = new HashSet<Review>();
 
     public Developer() {

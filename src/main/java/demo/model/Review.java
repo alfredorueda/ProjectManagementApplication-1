@@ -31,9 +31,6 @@ public class Review {
     private Developer developers;
 
     @ManyToOne
-    private Manager managers;
-
-    @ManyToOne
     private Speciality specialitys;
 
     public Long getId() {
@@ -82,14 +79,6 @@ public class Review {
 
     public void setDevelopers(Developer developers) {
         this.developers = developers;
-    }
-
-    public Manager getManagers() {
-        return managers;
-    }
-
-    public void setManagers(Manager managers) {
-        this.managers = managers;
     }
 
     public Speciality getSpecialitys() {
