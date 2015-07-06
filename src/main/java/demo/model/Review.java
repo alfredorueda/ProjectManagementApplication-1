@@ -19,10 +19,7 @@ public class Review {
 
     @Column
     @NotNull
-    private Date startDate;
-
-    @Column
-    private Date endDate;
+    private Date date;
 
     @ManyToOne
     private Project projects;
@@ -49,20 +46,12 @@ public class Review {
         this.valoration = valoration;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Project getProjects() {
@@ -92,8 +81,7 @@ public class Review {
     @Override
     public String toString() {
         return "Review{" +
-                "endDate=" + endDate +
-                ", startDate=" + startDate +
+                ", startDate=" + date +
                 ", valoration=" + valoration +
                 ", id=" + id +
                 '}';

@@ -1,9 +1,11 @@
 package demo.service;
 
 import demo.model.Developer;
+import demo.model.Project;
 import demo.model.Speciality;
 import demo.repository.DeveloperRepository;
 import demo.repository.EmployeeRepository;
+import demo.repository.ProjectRepository;
 import demo.repository.SpecialityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,15 +22,20 @@ public class SpecialityServices {
     private DeveloperRepository developerRepository;
     @Autowired
     private SpecialityRepository specialityRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     public void testSpecialities() {
         Developer developer = developerRepository.findBySurname("Romero").get(0);
-        Speciality sp1 = new Speciality();
-        sp1.setName("Java");
+        Project project = projectRepository.findOne(1L);
+        Speciality speciality = new Speciality();
+        speciality.setName("Java");
 
-        specialityRepository.save(sp1);
+        specialityRepository.save(speciality);
 
-        developer.getSpecialitiesSet().add(sp1);
+        project.getSpecialities().add(speciality);
+
+        developer.getProjectSet().add(project);
 
         developerRepository.save(developer);
     }
