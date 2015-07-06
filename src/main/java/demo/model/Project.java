@@ -40,6 +40,10 @@ public class Project {
     @ManyToMany
     private Set<Speciality> specialities = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "projects")
+    private Set<Review> reviews = new HashSet<Review>();
+
     public Project() {
     }
 
@@ -97,6 +101,14 @@ public class Project {
 
     public void setSpecialities(Set<Speciality> specialities) {
         this.specialities = specialities;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override
