@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -35,70 +32,109 @@ public class ReviewController {
     @Autowired
     private SpecialityRepository specialityRepository;
 
-    @RequestMapping(value = "/projects/{idProject}/developers/{idDeveloper}/specialtys/{idSpecialty}/review", method = RequestMethod.POST)
+    @RequestMapping(value = "/projects/{idProject}/developers/{idDeveloper}/specialtys/{idSpeciality}/review", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Review addReview(@PathVariable Long idProject,
                             @PathVariable Long idDeveloper,
                             @PathVariable Long idSpeciality,
-                            @RequestBody Review review)
-    {
-        /*INSTANCIAMOS UN PROJECTO A PARTIR DEL IDPROJECTO*/
-        Project project = projectRepository.findOne(idProject);
+                            @RequestBody Review review){
+        CheckVariables checkVariables = new CheckVariables(idProject, idDeveloper, idSpeciality).invoke();
 
-        if (project == null) throw new ProjectException(idProject);
+        Project project = checkVariables.getProject();
+        Developer developer = checkVariables.getDeveloper();
+        Speciality speciality = checkVariables.getSpeciality();
 
-        /*INSTANCIAMOS UN DEVELOPER A PARTIR DEL IDDEVELOPER*/
-        Developer developer = developerRepository.findOne(idDeveloper);
-
-        if (developer == null) throw new DeveloperException(idDeveloper);
-
-        /*INSTANCIAMOS UNA SPECIALTY A PARTIR DE LA IDSPECIALTY*/
-        Speciality speciality = specialityRepository.findOne(idSpeciality);
-
-        if (speciality == null) throw new SpecialityException(idSpeciality);
-
-        /**/
-        if (!developer.getProjectSet().contains(project)) throw new ReviewDeveloperProjectException(idProject, idDeveloper);
-
-        /**/
-        if (!project.getSpecialities().contains(speciality)) throw new ReviewProjectSpecialityException(idProject, idSpeciality);
-
-        /**/
-        if (!developer.getSpecialitiesSet().contains(speciality)) throw new ReviewDeveloperSpeciality(idDeveloper, idSpeciality);
 
         review.setDate(new Date());
 
-        review.setProjects(project);
+        review.setProject(project);
 
-        review.setDevelopers(developer);
+        review.setDeveloper(developer);
 
-        review.setSpecialitys(speciality);
+        review.setSpeciality(speciality);
 
         reviewRepository.save(review);
 
         return review;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Review> findAll() {
-        List<Review> reviews = new ArrayList<Review>();
-        Iterator<Review> iterator = reviewRepository.findAll().iterator();
-
-        while (iterator.hasNext()) reviews.add(iterator.next());
-
-        return reviews;
-    }
-
-    @RequestMapping(value= "/{id}", method = GET)
+    @RequestMapping(value= "/review/{id}", method = GET)
     public Review getById(@PathVariable Long id) {
         Review review = reviewRepository.findOne(id);
-
         if (review == null) throw new ReviewException(id);
+        return review;
+    }
+
+    @RequestMapping(value = "/projects/{idProject}/developers/{idDeveloper}/specialtys/{idSpeciality}/review", method = RequestMethod.GET)
+    public Review getReview(@PathVariable Long idProject,
+                                @PathVariable Long idDeveloper,
+                                @PathVariable Long idSpeciality) {
+
+        CheckVariables checkVariables = new CheckVariables(idProject, idDeveloper, idSpeciality).invoke();
+
+        Project project = checkVariables.getProject();
+        Developer developer = checkVariables.getDeveloper();
+        Speciality speciality = checkVariables.getSpeciality();
+
+        Review review = reviewRepository.findByProjectIdAndDeveloperIdAndSpecialityId(project.getId(), developer.getId(), speciality.getId());
 
         return review;
     }
 
+    private class CheckVariables {
+        private Long idProject;
+        private Long idDeveloper;
+        private Long idSpeciality;
+        private Project project;
+        private Developer developer;
+        private Speciality speciality;
 
+        public CheckVariables(Long idProject, Long idDeveloper, Long idSpeciality) {
+            this.idProject = idProject;
+            this.idDeveloper = idDeveloper;
+            this.idSpeciality = idSpeciality;
+        }
+
+        public Project getProject() {
+            return project;
+        }
+
+        public Developer getDeveloper() {
+            return developer;
+        }
+
+        public Speciality getSpeciality() {
+            return speciality;
+        }
+
+        public CheckVariables invoke() {
+    /*INSTANCIAMOS UN PROJECTO A PARTIR DEL IDPROJECTO*/
+            project = projectRepository.findOne(idProject);
+
+            if (project == null) throw new ProjectException(idProject);
+
+        /*INSTANCIAMOS UN DEVELOPER A PARTIR DEL IDDEVELOPER*/
+            developer = developerRepository.findOne(idDeveloper);
+
+            if (developer == null) throw new DeveloperException(idDeveloper);
+
+        /*INSTANCIAMOS UNA SPECIALTY A PARTIR DE LA IDSPECIALTY*/
+            speciality = specialityRepository.findOne(idSpeciality);
+
+            if (speciality == null) throw new SpecialityException(idSpeciality);
+
+        /**/
+            if (!developer.getProjectSet().contains(project)) throw new ReviewDeveloperProjectException(idProject, idDeveloper);
+
+        /**/
+            if (!project.getSpecialities().contains(speciality)) throw new ReviewProjectSpecialityException(idProject, idSpeciality);
+
+        /**/
+            if (!developer.getSpecialitiesSet().contains(speciality)) throw new ReviewDeveloperSpeciality(idDeveloper, idSpeciality);
+            return this;
+        }
+    }
+/*
     @RequestMapping(value= "/{id}", method = RequestMethod.DELETE)
     public void deleteById(@PathVariable Long id) {
         Review review = reviewRepository.findOne(id);
@@ -116,4 +152,5 @@ public class ReviewController {
 
         return review;
     }
+    */
 }

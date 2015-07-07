@@ -41,7 +41,7 @@ public class Project {
     private Set<Speciality> specialities = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "projects")
+    @OneToMany(mappedBy = "project")
     private Set<Review> reviews = new HashSet<Review>();
 
     public Project() {

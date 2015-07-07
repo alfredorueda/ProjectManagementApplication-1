@@ -33,11 +33,12 @@ public class SpecialityServices {
 
         specialityRepository.save(speciality);
 
+        developer.getSpecialitiesSet().add(speciality);
+
         project.getSpecialities().add(speciality);
 
-        developer.getProjectSet().add(project);
-
         developerRepository.save(developer);
+        projectRepository.save(project);
     }
 
 }

@@ -22,13 +22,13 @@ public class Review {
     private Date date;
 
     @ManyToOne
-    private Project projects;
+    private Project project;
 
     @ManyToOne
-    private Developer developers;
+    private Developer developer;
 
     @ManyToOne
-    private Speciality specialitys;
+    private Speciality speciality;
 
     public Long getId() {
         return id;
@@ -54,28 +54,28 @@ public class Review {
         this.date = date;
     }
 
-    public Project getProjects() {
-        return projects;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProjects(Project projects) {
-        this.projects = projects;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
-    public Developer getDevelopers() {
-        return developers;
+    public Developer getDeveloper() {
+        return developer;
     }
 
-    public void setDevelopers(Developer developers) {
-        this.developers = developers;
+    public void setDeveloper(Developer developer) {
+        this.developer = developer;
     }
 
-    public Speciality getSpecialitys() {
-        return specialitys;
+    public Speciality getSpeciality() {
+        return speciality;
     }
 
-    public void setSpecialitys(Speciality specialitys) {
-        this.specialitys = specialitys;
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
     }
 
     @Override
